@@ -1,0 +1,363 @@
+\documentclass[usenames,dvipsnames,11pt,compress, final, handout]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+\usepackage{alltt} 
+\let\Tiny=\tiny
+\usepackage{eqnarray,amsmath}
+% \usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+% \usepackage{bigstrut}
+\usepackage{graphicx}
+\usepackage[round]{natbib}
+\usepackage{bm}
+\usepackage{tikzsymbols}
+\setbeamersize{text margin left=15pt,text margin right=10pt}
+\usepackage{tikzsymbols}
+\usepackage{textcomp}
+\usepackage{parskip}
+\setbeamertemplate{navigation symbols}{}    
+\setbeamertemplate{footline}[frame number]{}
+\usepackage{soul}
+\usetheme{Singapore}
+\usecolortheme{lily}
+%Misc Commands
+\newcommand{\mbf}{\mathbf}
+\newcommand{\lexp}{$\overset{\mbox{\tiny 0}}{e}$}
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{5pt}}{\enditemize}
+
+
+\newcommand{\bx}{{\bm x}}
+\newcommand{\bX}{{\bm X}}
+\newcommand{\by}{{\bm y}}
+\newcommand{\bY}{{\bm Y}}
+\newcommand{\bW}{{\bm W}}
+\newcommand{\bG}{{\bm G}}
+\newcommand{\bR}{{\bm R}}
+\newcommand{\bZ}{{\bm Z}}
+\newcommand{\bV}{{\bm V}}
+\newcommand{\bL}{{\bm L}}
+\newcommand{\bz}{{\bm z}}
+\newcommand{\be}{{\bm e}}
+\newcommand{\bgamma}{{\bm \gamma}}
+\newcommand{\bbeta}{{\bm \beta}}
+\newcommand{\balpha}{{\bm \alpha}}
+\newcommand{\bSigma}{{\bm \Sigma}}
+\newcommand{\bmu}{{\bm \mu}}
+\newcommand{\btheta}{{\bm \theta}}
+\newcommand{\bepsilon}{{\bm \epsilon}}
+\newcommand{\bone}{{\bm 1}}
+\newcommand{\bzero}{{\bm 0}}
+\newcommand{\bC}{{\bm C}}
+\newcommand{\bI}{{\bm I}}
+\newcommand{\bA}{{\bm A}}
+\newcommand{\bB}{{\bm B}}
+\newcommand{\bQ}{{\bm Q}}
+\newcommand{\bS}{{\bm S}}
+\newcommand{\bD}{{\bm D}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\orange}{\textcolor{Orange}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand{\ok}{\nonumber}
+
+% Adjust vertical spacing in lists
+\makeatletter
+\def\@listi{\leftmargin\leftmargini
+            \topsep 		8\p@ \@plus2\p@ \@minus2.5\p@
+            \parsep 		0\p@
+            \itemsep	5\p@ \@plus2\p@ \@minus3\p@}
+\let\@listI\@listi
+\def\@listii{\leftmargin\leftmarginii
+              \topsep    6\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  3\p@ \@plus2\p@ \@minus3\p@}
+\def\@listiii{\leftmargin\leftmarginiii
+              \topsep    3\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  2\p@ \@plus2\p@ \@minus3\p@}
+\makeatother
+% Dealing with fraile envrionment of beamer with codes
+\newenvironment{xframe}[2][]
+  {\begin{frame}[fragile,environment=xframe,#1]
+  \frametitle{#2}}
+  {\end{frame}}
+
+
+
+\title{Stat 394 Probability I}
+\subtitle{Lecture 0}
+
+\author[]{Richard Li}
+\date{\today}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+% \renewcommand{\itemize}[1][<+(1)->]{\olditemize[#1]}
+
+\maketitle
+%================================================================%
+\section{Logistics}
+\stepcounter{subsection}
+\frame{
+	\frametitle{About this course}
+	\begin{itemize}
+		\item \blue{Instructor:} Z. Richard Li\\
+			\begin{itemize}
+			  	\item {\bf Office:} C-14G Padelford
+			  	\item {\bf Office Hours:} M 12:00-2:00 PM, in C14-G Padelford (may move to C-14A next door when office gets crowded)
+			  	\item {\bf E-mail:} lizehang@uw.edu\\
+			  \end{itemize}  
+		\pause	  
+		\item \blue{TA:} Anna Green 
+			\begin{itemize}
+				\item {\bf TA E-mail:} greena64@uw.edu 
+				\item {\bf TA Office Hours:} TBD 
+			\end{itemize}
+		\pause
+		\item \blue{Course website:} Canvas
+			\begin{itemize}
+					\item Syllabus, learning objectives, schedule, lecture slides, etc.
+					\item Important announcements!
+					\item Homeworks. \red{\textit{(first HW due next Monday!)}}
+					\item Discussion thread for homework.
+					\item Please do not e-mail homework questions to me or to the TA. Use the discussion board instead.
+				\end{itemize}	
+	\end{itemize}
+}
+\frame{
+	\frametitle{Course expectations}
+	\begin{itemize}
+		\item \blue{Pre-reqs:}
+				\begin{itemize}
+					\item Calculus at the level of MATH 124, 125, and 126.
+					\item Basic linear algebra, familiar with matrix notations.
+					\item Multivariate calculus if you are also taking 395 in term B (not required for 394).
+				\end{itemize}
+		\item \blue{Textbook:} \textit{A First Course in Probability}, 9th ed. by Sheldon Ross
+			\begin{itemize}
+				\item Previous editions are fine for learning the material.
+				\item \red{Homework problems will be from the 9th edition}.
+				\item Self-test problems after each chapters are good exercise.
+				\item We will cover mostly Chapter 2 - 4 and part of chapter 5 in this term.
+				\item You need to read and study Chapter 1 yourself (We will briefly introduce some of it today).	
+			\end{itemize}
+	\end{itemize}
+}
+
+
+\frame{
+\frametitle{Evaluation}
+\begin{itemize}
+\item \blue{Participation (10\%)}
+\item \blue{Homework (40\%):} There will be 5 homework sets. NO LATE HOMEWORKS ACCEPTED.
+\item \blue{Final (50\%):} closed book, closed notes; in class final exam on July 19, JHN 026. 
+\end{itemize} 
+}
+
+\frame{
+	\frametitle{Participation}
+	\begin{itemize}
+		\item \blue{Course structures}
+				\begin{itemize}
+					\item Lecture: Monday, Wednesday, and first hour on Friday.
+					\item Problem session: second hour on Friday.\pause
+						\begin{itemize}
+							\item You will work on selected problems in groups
+							\item And share your solutions (verbally or on the white board)
+						\end{itemize}
+				\end{itemize}
+		\pause		
+		\item \blue{Participation credits}
+			\begin{itemize}
+			\item Participation in the Friday problem session. 
+			\item Ask questions.
+			\item Answer and explain questions from your peers.
+			\item Participate in \textit{``probability in the news''}. At least one news post is required for getting the participation credits.
+		\end{itemize} 
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Probability in the news}
+	\includegraphics[width = .9\textwidth]{fun/538.png}
+
+	{\small
+	source: \url{https://fivethirtyeight.com/features/dont-worry-about-the-job-market-yet-but-pay-attention/}
+	}
+}
+
+\frame{
+	\frametitle{Probability in the news}
+	There are some interesting fact/analysis raised in this article, e.g.,
+	\begin{itemize}
+		\item  The unemployment rate fell to 4.3 percent in May, its lowest level since 2001. 
+		\item That might sound like good news. It isn’t. Why? \pause
+		\item The government only considers people unemployed if they are actively looking for work. \pause
+		\item The labor force (everyone who is either working or actively looking for work) shrank by more than 400,000 people.  \pause
+		\item Possible comment: naively reading off the unemployment rate drop can be misleading. This article provides a more in-depth view of the other driving force of unemployment rate: size of the labor force. 
+	\end{itemize}
+}
+\frame{
+	\frametitle{Probability in the news}
+	\begin{itemize}
+		\item News from different regions \& fields are welcome!\pause
+		\item You can agree or disagree with the news you post. \pause
+		\item Comment on the background of the issue so others can understand better. \pause
+		\item Engage in discussions. \pause
+		\item Be friendly in discussions. \pause
+		\item Do not post plain weather forecast, unless the use of probability is very very interesting.\pause
+		\item Do not post fictional news (e.g., the onion), unless the use of probability is very very interesting.
+	\end{itemize}
+}
+%================================================================%
+\section{History}
+\stepcounter{subsection}
+\frame{
+	\frametitle{Course expectations}
+	\begin{itemize}
+		\item \blue{What we will learn in this class}
+			\begin{itemize}
+				\item Probability theories, some statistics, some mathematical tools. \pause
+				\item Using the tools of probability and statistics to solve problems. \pause
+				\item Using probabilistic reasoning in real life.\pause
+			\end{itemize}
+		
+	\end{itemize}
+}
+\frame{
+	\frametitle{More specifically}
+	\begin{itemize}
+		\item Gambling! \pause
+		\item Not really, but the theory of probability is always associated with it. \pause
+		\item Some common tools
+				\begin{itemize}
+					\item Coin: Heads (H) or Tails (T).
+					\item Die: $\{1, 2, 3, 4, 5, 6\}$
+					\item Full deck of cards: $52$ cards
+				\end{itemize}
+		\pause
+		\item A typical question you will see in this course:	
+	\end{itemize}
+				\vspace{-.5cm}
+				\begin{quote}
+				Start with a shuffled deck of cards and distribute all 52 cards to 4 players, 13 cards to each. What is the probability that each player gets an Ace? 
+
+				Next, assume that you are a player and you get a single Ace. What is the probability now that each player gets an Ace?
+			\end{quote}	
+}
+\frame{
+	\frametitle{History of probabilities}
+	\begin{itemize}
+		\item Modern probability is considered to be born in 1654 when a nobleman wrote a letter to the mathematician and philosopher Blaise Pascal:
+	\end{itemize}\pause
+	\vspace{-.2cm}
+				\begin{quote}
+				I used to bet even money that I would get at least one 6 in four rolls of a fair die. The probability of this is 4 times the probability of getting a 6 in a single die, i.e., $4/6 = 2/3$; clearly I had an advantage and indeed I was making money. 
+
+				Now I bet even money that within 24 rolls of two dice I get at least one double 6. This has the same advantage ($24/6^2 = 2/3$), but now I am losing money. Why?
+			\end{quote}			
+}
+\frame{
+	\frametitle{History of probabilities}
+	\begin{itemize}
+		\item This problem starts the correspondence between Pascal and Pierre de Fermat.
+		\item And the series of correspondence is credited for the founding of probability theory. \pause
+		\item \blue{Now, do you see what's going wrong in the question?} \pause
+		\item You will solve this problem in HW1 \Winkey
+	\end{itemize}
+}
+\frame{
+	\frametitle{Another example of probabilities}
+	\begin{itemize}
+		\item In a family with $4$ children, what is the probability of a $2:2$ boy-girl split? \pause
+		\item Is it close to $1$, since it is the most ``balanced'' possibility? \pause
+		\item Is it $1/5$, since there are 5 possible combinations? \pause
+		\item Again, you will solve this problem in HW1 \Winkey
+	\end{itemize}
+}
+
+
+\frame{
+	\frametitle{A more challenging example}
+	\begin{itemize}
+		\item Suppose you're on a game show, and you're given the choice of three doors.  \pause
+		\item Behind one door is a car; behind the others, goats.  \pause
+		\item The host knows where the car is. \pause
+		\item You pick a door and the host opens another door and you see there is a goat.  \pause
+		\item He then says to you, ``Do you want to change your selection?''
+	\end{itemize}
+	\pause
+	\centering
+	\includegraphics[width=.8\textwidth]{fun/monty.png}
+}
+\frame{
+	\frametitle{Another mind twisting example}
+	\begin{itemize}
+		\item Suppose I have two envelopes with money in them. \pause
+		\item One contains twice the money than the other.\pause
+		\item I give you one; you open it and see 100 dollars. \pause
+		\item Now I say
+	\end{itemize}
+	\vspace{-.5cm}
+	\begin{quote}
+	I can give you a chance to swap the envelope. You have $50\%$ chance of gaining another 100 dollars, and $50\%$ chance of losing 50 dollars. So it is to your advantage if you swap.
+	\end{quote}\pause
+	\vspace{-.5cm}
+	\begin{itemize}
+		\item Can you spot anything that does not make sense? \pause
+		\item No matter what you see in your envelop, you should always swap, so you don't need to open it at all.
+		\item What's wrong?
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Some other things you will see in this course}
+	\begin{itemize}
+		\item What is the probability that among the $n$ people, no $3$ of them have their birthday on the same day? \pause
+		\item What is the probability of seeing at least 5 earthquakes in the next 10 weeks given the average rate at which earthquakes happen?\pause
+		\item A man carries 2 matchboxes. Each time he needs a match, he is equally likely to take it from either of them. When he first discovers that one of his matchboxes is empty, what is the probability that there are $k$ matches in the other matchbox?\pause
+		\item What is the power of a single voter in a state with $n$ total voters, in terms of electoral college votes?\pause
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Now let us lay out the actual plan}
+	\begin{itemize}
+		\item \blue{Today: Combinatorial analysis} \pause
+					\begin{itemize}
+						\item The fundamentals of probabilistic thinking: counting, permutations, combinations, etc.
+					\end{itemize}\pause
+		\item \blue{Week 1: Axioms of probability}\pause
+			\begin{itemize}
+				\item The language we need to communicate probabilities.
+			\end{itemize}\pause
+		\item \blue{Week 2 \& 3: Conditional probabilities and independence}\pause
+				\begin{itemize}
+					\item The concepts of probability under partial information. (Remember swapping gate and envelope?)
+				\end{itemize} \pause
+		\item \blue{Week 3 \& 4: Random variables}		\pause	
+					\begin{itemize}
+						\item The ability to characterize more complicated problems
+					\end{itemize}			
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Before we get started}
+	\begin{itemize}
+		\item Probability at the introductory level is not difficult. \pause
+		\item But human are typically ``probability blind''.\pause
+		\item So, we are going to learn math tools to help us solve problems.\pause
+		\item But more importantly, we will train our minds to reason with probabilities, and not to be fooled by randomness.
+	\end{itemize}
+}
+
+\end{document}

@@ -1,0 +1,178 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+ 
+
+\begin{document}
+
+
+\noindent{\bf STAT 394}\\
+{\bf Probability I}\\
+{\bf Summer 2017}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf\Large Balls in Boxes}\\
+\vspace{5mm}
+{Richard Li}
+\end{center}
+\vspace{2mm}
+\section{Introduction}
+This is a summary for a frequently occurred combinatorial problem of putting balls into boxes. To make it more explicit, we consider distributing $k$ balls into $n$ boxes, under different conditions such as:
+\begin{enumerate}
+	\item Balls can be distinguishable, or identical.
+	\item Boxes can be distinguishable, or identical.
+	\item There can be restrictions on the number of balls in the boxes. 
+\end{enumerate}
+
+In the first part of this summary, we will see that the variations of this seemingly simple problem essentially represents many combinatorial problems we have seen in other contexts. In the second part of this summary, we will discuss issues related to probability calculation in such problems. 
+
+\section{Counting problems}
+Before we get to the more complicated part of calculating probabilities, we will focus on counting the number of outcomes first. But bear in mind while reading this chapter, that as the conditions vary, each possible outcome might not have equal probability of occurring. That aspect will be discussed in the next section. 
+
+\subsection{Case 1: both balls and boxes are distinguishable}
+
+First of all, we need to define ``distinguishable''. By distinguishable, we mean the balls and boxes are labeled such as ``ball 1'', ``ball 2'', ..., up to ``ball k'', and similarly for ``box 1'', ..., ``box n''. In this case, for example, we will count ``ball 1 in box 1, ball 2 in box 2'' to be a different outcome as ``ball 1 in box 2, and ball 2 in box 1'', even if the rest of the balls are placed in the same box. 
+
+Now, we can consider where to put each ball as $k$ consecutive experiments: for each ball, there are $n$ possible boxes to put it in, and since any change of where to put the ball are counted as a new outcome (since they are all distinguishable), by principle of counting, the total number of outcomes is $n^k$.
+
+\textbf{Example} How many subsets are there for a set of $n$ elements? To translate it into ball-and-box language: There are two boxes, one labeled ``in the subset'', and one labeled ``not in the subset'', how many different ways you can put $n$ distinct balls into those two boxes (remember by definition, elements in a set are distinct). Each configuration of distributing the balls, will correspond to a subset.
+
+\subsubsection{Variation}
+\begin{itemize}
+	\item \textbf{What if each box can only contain one ball, and $n \geq k$? } In this case, we can obtain the results using the same logic as before, but every time one ball has been placed in a box, the total number of box we can choose from becomes one less. Thus the total number of outcomes are $n(n-1)(n-2)\cdots(n-k+1)$. Notice also that, in terms of the permutation language, this is equivalent to finding the number of permutations of $k$ objects out of a set of size $n$, i.e., how many different ordered arrangements there are for $k$ out of $n$ distinct objects. 
+
+	Also notice the special case when $n=k$, then this is the standard permutation problem of ordering $k$ balls. 
+
+	\item \textbf{*What if each box must contain at least one ball, and $n \leq k$? } Notice this is equivalent to count all cases where no box is empty. That means, we can count instead, the number of possible ways where exactly $1$ box is empty, exactly $2$ boxes are empty, ..., up to exactly $n-1$ boxes are empty, and subtract those cases from the total number of configurations $n^k$. 
+
+	Let us denote $S_{n, k}$ as the number of possible distributions of $k$ balls into $n$ boxes where no box is empty, then for example, the number of possible distributions of $k$ balls into $n$ boxes, with exactly one empty is equivalent to first choosing $one$ box, and then distribute the balls into the other $n-1$ boxes, i.e., 
+	\[
+		{n \choose 1} S_{n-1, k}
+	\]
+	Similarly, we have
+	\begin{eqnarray}\nonumber
+		n^k &=& \#\{\mbox{no box empty}\} + \#\{\mbox{1 box empty}\} + ... + \#\{\mbox{(n-1) box empty}\} \\\nonumber	
+			&=& S_{n, k} + {n \choose 1} S_{n-1, k} + ... + {n \choose n-1} S_{1, k} \\\nonumber
+	\end{eqnarray}  
+	Remember $S_{1, k}$ denotes the number of ways we can distribute $k$ balls into $1$ box, which is just $1$, then for any $k$, we can recursively calculate $S_{n, k}$ for $n = 1, 2, 3, ..., k$. For example, when there are $k=3$ balls, $S_{1, 3} = 1$ as we know, then since $2^k = S_{2, k} + {2 \choose 1} S_{1, k}$, we have $S_{2, k} = 6$, i.e., there are $6$ different ways to put $3$ balls into $2$ boxes so that no box is empty. And then since $3^k = S_{3, k} + {3 \choose 2} S_{2, k} + {3 \choose 1} S_{1, k}$, so we have $S_{3, k} = 6$. You can keep doing this type of calculation for large $n$ and $k$.
+
+	% \item \textbf{What if each box can contain up to $m$ balls, and $mn > k$?} 
+\end{itemize}
+
+\subsection{Case 2: balls are distinguishable, but boxes are not}
+In this case, we have ball labeled 1, 2, 3, ..., k, but boxes are identical. So  for example, we will count ``ball 1, 2, and 3 in box 1, ball 4 and 5 in box 2'' to be a the same outcome as ``ball 1, 2, and 3 in box 2, and ball 4 and 5 in box 1''. That is, for any two outcomes in Case 1, if they only differ by the labels of the box, we will consider them to be the same outcome in this case. 
+
+The general case turns out to be very complicated for this problem. So let's only consider the case where no box is empty, i.e., as in the second variation of Case 1. 
+
+\textbf{What if each box must contain at least one ball, and $n \leq k$? } 
+Let's do a thought experiment now. If I give you $n$ identical boxes, first, suppose we know that, when these $n$ boxes are not distinguishable, there are $X$ number of ways you can put $k$ distinguishable balls in the box. Of course, the number $X$ here is exactly what we want to calculate. But suppose for a moment it is known.
+
+Then, for each possible configuration, e.g., for 9 balls, a possible configuration as below, 
+\[
+	(1, 2), (4, 5), (3, 6, 7, 8, 9)
+\]
+remember we have identical boxes to hold these labeled balls, but now I ask you to label the boxes by $1, 2, ..., n$, for example, 
+\[
+	box 1 = (1, 2), box 2 = (4, 5), box 3 = (3, 6, 7, 8, 9)
+\]
+Now for every possible labeling of the box, we will create a new outcome under the setting of Case 1 (where boxes and balls are both distinguishable). Now, think about the 9 ball illustration here, there are no two boxes containing the same contents (since the balls are different from each other, e.g., we can switch the labels for box 1 and box 2 above, and it will be considered two different outcomes in Case 1), so that we have $3!$ ways of labeling the boxes. 
+
+So by the principle of counting, the total number of putting $k$ distinguishable balls into $n$ distinguishable boxes can be broken down into two experiments: putting the balls into non-distinguishable boxes first, and then labeling the boxes, i.g., there are $X \times n!$ possible ways. And as we already know that it will equal $S_{n, k}$ (as was shown in the previous section), which means, there are $X = \frac{S_{n, k}}{n!}$ possible outcomes if we want to put distinguishable balls into non-distinguishable boxes.
+
+Notice that we emphasize that this logic is applied when no box is empty, since the key step here requires that whenever we change the labels, it is equivalent to creating a new outcome for the problem in Case 1. Remember this is achieved because the contents in each box are different from each other. If we have more than two empty boxes, this strategy will fail, since switching the labels of two empty boxes are still counted as the same outcome in Case 1, e.g., 
+\[
+	box 1 = (1, 2), box 2 = (4, 5), box 3 = (3, 6, 7, 8, 9), box 4 = (), box 5 = ()
+\]
+is the same as 
+\[
+	box 1 = (1, 2), box 2 = (4, 5), box 3 = (3, 6, 7, 8, 9), box 5 = (), box 4 = ()
+\]
+
+So it cannot be easily calculated by dividing your answer from Case 1 by $n!$ any more. If you are interested in the general case, feel free to search for the term ``Stirling numbers of the second kind'' (but notice my $S(n, k)$ notation here is defined as something else). Notice this counter example I provided here does not cover the special case where we can require there exist at most one empty box, for interesting readers this case can be considered as an exercise.
+
+\subsection{Case 3: balls are not distinguishable, but boxes are}
+For this case, it is easier to think in terms of the $n$ boxes, since they are distinct. As the balls are not distinguishable, it is only the number of balls in each box that matters, if we denote $x_i$ as the number of balls in box $i$, what we want to find out is essentially how many different integer solutions there are to the problem 
+\[
+	x_1 + x_2 + ... + x_n = k, \;\;\;\; x_i \geq 0, i = 1, 2, ..., n
+\] 
+If you have read Chapter 1.6 of the textbook, you would know there are ${n+k-1 \choose k}$ different integer solutions. But let us also consider how can we count it alternatively without using propositions from the textbook. First, if we align $n + k$ balls into a line (we will see why we need $n$ more balls later), then there is ${n+k-1 \choose k}$ ways we can distribute the balls into k basket, and allowing each basket to contain at least one ball. To see why this is the case, in the illustration below,
+\[
+	o \; o\;  o\;  o\;  o\;  o 
+\] 
+there are 6 balls, and 5 intervals in between, if we need to put the balls into $n$ distinct boxes, it is equivalent to finding $n-1$ intervals where we divide them (See textbook Chapter 1.6 for more detailed explanation, this essentially illustrates the proposition for the number of positive integer solutions). So for $n + k$ balls, there are ${n+k-1 \choose n-1}$ ways of putting them into $n$ boxes with at least one ball in each box. Now, this is different from the task we start out with, as we allow empty boxes. And that's why we put in an additional $n$ balls in the first place. Since once a configuration is made with $n + k$ balls, we can just take one ball out of each box, and then we removed the restrictions we have placed. That is, there are ${n+k-1 \choose n-1} = {n+k-1 \choose k}$ possible outcomes.
+
+\textbf{Example} How many different outcomes we can get by flipping two coins? This seems like a silly example, as there are apparently $3$ outcomes. But to put it into ball-and-box language, if we have $2$ balls and $2$ boxes, one box labeled ``H'' and another ``T'', then this ball-and-box experiment becomes equivalent to the coin flipping.
+
+\textbf{Example} Homework problem (1.31 of textbook) of distributing $8$ blackboards to $4$ schools.
+
+\subsubsection{Variation}
+\begin{itemize}
+	\item \textbf{What if each box can only contain one ball, and $n \geq k$? } This is an easier question, as we only need to pick $k$ boxes, and put one ball in each box. Therefore there are ${n \choose k}$ possible outcomes.
+
+	\item \textbf{What if each box must contain at least one ball, and $n \leq k$? } Following the same reasoning as the original case, this is in fact easier to calculate, as it is simply equivalent to finding $n-1$ separations between $k$ balls, and thus the total number of possible outcomes is ${k-1 \choose n-1}$
+\end{itemize}
+
+
+\subsection{Case 4: both balls and boxes are not distinguishable}
+When neither the balls nor the boxes are distinguishable, this is equivalent to an integer partition problem. For example, there are 3 possible partition of 3 balls, namely $(3, 0, 0), (2, 1, 0)$, and $(1, 1, 1)$. In general there is no good way to count the outcome for an arbitrary $n$ and $k$ analytically. 
+
+
+\textbf{Example} In the problem session of the first week, we talked about the problem where we listed out all $6$ ways of getting a total of $10$ and $9$ for rolling three dice. It is similar to the ball-and-box problem if we treat each ball as one count, each die as a box, and restrict each box to contain at most $6$ balls. 
+
+It should be noticed that, at that point, it seemed clear that the $6$ ways of getting a $9$ or $10$ are not equally likely. The question is, what about other cases in terms of probability?
+
+\section{Probability problems}
+For starters, let us consider the example we have seen in class: suppose you have $3$ balls, and you randomly toss them into $3$ boxes, what is the probability that exactly one box is empty?
+
+First, one might ask: are balls or boxes here distinguishable or not? The answer is: we don't know, and it does not matter. 
+
+It might seem strange given that we just spent this much energy discussing how to count the outcomes for the different scenarios. But intuitively, imagine you are holding three balls and tossing them in the boxes. Will it matter if the balls or boxes are labeled?
+
+In fact, the key piece of information we need to calculate probability lies in the problem description: each ball is randomly tossed into one box. That is, the equally likely event takes the form $\{\mbox{ball $i$ is put into box $j$}\}$. Implicitly, we should notice that we are already treating the balls differently, so we could calculate the probability of exact one box being empty as
+\[
+	p = \frac{\#\mbox{ of ways to put 3 distinguishable balls into 3 distinguishable boxes, with one empty}}{\# \mbox{ of ways to put 3 distinguishable balls into 3 distinguishable boxes}}
+\]
+The reason we can use this ratio is because each event, $\{\mbox{ball $i$ is put into box $j$}\}$, is equally likely, so we can only count how many events fall into the first set and divide that by the number of events fall into the second set. 
+
+So what will happen if we really want to think instead of the distinguishable balls and boxes, but rather make things non-distinguishable? The following relationship still holds (with sloppy notation of $\#(a-b-c)$ to denote the number of ways the balls can be divided into three groups of size a, b, and c), 
+\[
+	p = \frac{\#(2-1-0)}{\#(3-0-0) + \#(1-1-1) + \#(2-1-0)}
+\]
+But now, are the three terms in the denominator the same value so that $p = 1/3$ simply? There is no indication of that is the case in the problem settings, but through calculation we can see it is not true. Then how do we calculate each term? Again, by labeling the balls and boxes, and that puts us back to the previous case directly. 
+
+Similarly, one might think the balls are identical but the boxes are not, so the numerator of the previous equation becomes $\#(2-1-0) + \#(2-0-1) + ... + \#(0-1-2)$. Again, there's no condition in the problem suggesting that there configurations are equally likely, and that means we can't just count the number of such configurations and use their ratio directly.
+
+
+\textbf{Example} Flipping two coins, what is the probability of seeing different outcomes?
+
+\textbf{Example} For a family with $4$ children, what is the probability of seeing $2$ boys and $2$ girls, assuming boys and girls are equally likely for each child, and the sex of each child are independent of each other. 
+
+
+\section{Summary}
+Thinking in terms of identical versus distinguished objects can be challenging in many problems. But remember in which way you should approach the problem depends on the problem settings. The counting problem and probability problem are very related but also quite different in the sense that
+	\begin{itemize}
+		\item For a counting problem, when some objects are not distinguishable or identical, that usually means you need to think more about whether or where you over-counted, and you might need to use some of the techniques to remove the repeated counts.
+		\item For a probability problem, when objects are not distinguishable or identical, many times you might need to label the objects in your mind implicitly just so that you could define equally likely event for the calculation.  
+	\end{itemize}
+
+
+\end{document}
+

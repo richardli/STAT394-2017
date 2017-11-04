@@ -1,0 +1,350 @@
+\documentclass[usenames,dvipsnames,12pt,compress, final]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+\usepackage{alltt} 
+\let\Tiny=\tiny
+\usepackage{eqnarray,amsmath}
+% \usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+% \usepackage{bigstrut}
+\usepackage{graphicx}
+\usepackage[round]{natbib}
+\usepackage{bm}
+\usepackage{tikzsymbols}
+\setbeamersize{text margin left=15pt,text margin right=10pt}
+\usepackage{tikzsymbols}
+\usepackage{textcomp}
+\usepackage{parskip}
+\setbeamertemplate{navigation symbols}{}    
+\setbeamertemplate{footline}[frame number]{}
+\usepackage{soul}
+\usetheme{Singapore}
+\usecolortheme{lily}
+%Misc Commands
+\newcommand{\mbf}{\mathbf}
+\newcommand{\lexp}{$\overset{\mbox{\tiny 0}}{e}$}
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{5pt}}{\enditemize}
+
+
+\newcommand{\bx}{{\bm x}}
+\newcommand{\bX}{{\bm X}}
+\newcommand{\by}{{\bm y}}
+\newcommand{\bY}{{\bm Y}}
+\newcommand{\bW}{{\bm W}}
+\newcommand{\bG}{{\bm G}}
+\newcommand{\bR}{{\bm R}}
+\newcommand{\bZ}{{\bm Z}}
+\newcommand{\bV}{{\bm V}}
+\newcommand{\bL}{{\bm L}}
+\newcommand{\bz}{{\bm z}}
+\newcommand{\be}{{\bm e}}
+\newcommand{\bgamma}{{\bm \gamma}}
+\newcommand{\bbeta}{{\bm \beta}}
+\newcommand{\balpha}{{\bm \alpha}}
+\newcommand{\bSigma}{{\bm \Sigma}}
+\newcommand{\bmu}{{\bm \mu}}
+\newcommand{\btheta}{{\bm \theta}}
+\newcommand{\bepsilon}{{\bm \epsilon}}
+\newcommand{\bone}{{\bm 1}}
+\newcommand{\bzero}{{\bm 0}}
+\newcommand{\bC}{{\bm C}}
+\newcommand{\bI}{{\bm I}}
+\newcommand{\bA}{{\bm A}}
+\newcommand{\bB}{{\bm B}}
+\newcommand{\bQ}{{\bm Q}}
+\newcommand{\bS}{{\bm S}}
+\newcommand{\bD}{{\bm D}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\orange}{\textcolor{Orange}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand{\ok}{\nonumber}
+
+% Adjust vertical spacing in lists
+\makeatletter
+\def\@listi{\leftmargin\leftmargini
+            \topsep 		8\p@ \@plus2\p@ \@minus2.5\p@
+            \parsep 		0\p@
+            \itemsep	5\p@ \@plus2\p@ \@minus3\p@}
+\let\@listI\@listi
+\def\@listii{\leftmargin\leftmarginii
+              \topsep    6\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  3\p@ \@plus2\p@ \@minus3\p@}
+\def\@listiii{\leftmargin\leftmarginiii
+              \topsep    3\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  2\p@ \@plus2\p@ \@minus3\p@}
+\makeatother
+% Dealing with fraile envrionment of beamer with codes
+\newenvironment{xframe}[2][]
+  {\begin{frame}[fragile,environment=xframe,#1]
+  \frametitle{#2}}
+  {\end{frame}}
+
+
+
+\title{Stat 394 Probability I}
+\subtitle{Lecture 2}
+
+\author[]{Richard Li}
+\date{\today}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+% \renewcommand{\itemize}[1][<+(1)->]{\olditemize[#1]}
+
+\maketitle
+
+%================================================================%
+\section{Combinatorics}
+\stepcounter{subsection}
+\frame{
+	\frametitle{Review}
+}
+\frame{
+\frametitle{Example}
+	You are at a Poke place, from $5$ kinds of fish and $10$ choices of toppings, how many different combinations consisting of $3$ fish and $5$ toppings can be formed (assume you can't choose the same fish more than once). What if $2$ of the toppings are very spicy, and you don't want to have them both together?
+	\vspace{4cm}
+
+}
+\frame{
+	\frametitle{Multinomial coefficients}
+	A set of $n$ distinct items is to be divided into $r$ distinct groups of size $n_1, n_2, ..., n_r$, where $\sum_{i=1}^r n_i = n$. How many different divisions are possible?
+	\vspace{3cm}
+}
+
+\frame{
+	\frametitle{Example}
+	In a knockout tournament involving $64$ players. In each round, the players are divided into pairs, and the winners go on the next round.  How many possible outcomes are there for the first round? 
+	\vspace{4cm}
+}
+\frame{
+	\frametitle{Example}
+	
+}
+
+
+\frame{
+	\frametitle{Example}
+	
+}
+\frame{
+	\frametitle{Summary}
+	\begin{itemize}
+		
+		\item Permutation and combination are strongly related, as we have seen in examples.
+		\item We will see more of these in the chapters to come.
+		\item Read Chapter 1 on your own (especially multinomial theorem in Sec 1.5).
+		\item Homework 1 due next Monday.  
+	\end{itemize}
+}
+%================================================================%
+\section{Sample space and events}
+\stepcounter{subsection}
+\frame{
+	\frametitle{Introduction}
+	\begin{itemize}
+		\item Before we start talking about probability, we need to define it.
+		\item To do that, we need to review some set theory and definitions.
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Sample space}
+	\begin{itemize}
+		\item Experiment
+				\vspace{1.5cm}
+	
+		\item Sample space
+				\vspace{1.5cm}
+		\item Event
+				\vspace{1.5cm}
+	\end{itemize}
+}
+\frame{
+	\frametitle{Examples}
+}
+ 
+\frame{
+	\frametitle{Set theory}
+	Suppose that $E$ and $F$ are subsets of a set $S$
+	\begin{itemize}
+		\item The union of events $E$ and $F$ is
+		\vspace{1cm}
+		\item  The intersection of events $E$ and $F$ is
+		\vspace{1cm}
+		\item  $E$ and $F$ are disjoint (or mutually exclusive) if
+		\vspace{1cm}
+	\end{itemize}
+}
+\frame{
+	\frametitle{Set theory}
+	\begin{itemize}
+		\item The complement of $E$ is
+		\vspace{1cm}
+		\item  The set difference of $E$ and $F$ is
+		\vspace{1cm}
+		\item  Venn diagram
+		\vspace{3cm}
+	\end{itemize}
+}
+\frame{
+	\frametitle{Example}
+	Let $S = \RR^2$, and two events
+	\[
+		E = \{(x, y) \in S : 0 < x < 3, 0 < y < 3\}
+	\]
+	\[
+		F = \{(x, y) \in S : 2 < x < 4, 0 < y < 4\}
+	\]
+	\vspace{3cm}
+}
+\frame{
+	\frametitle{Basic rules}
+	\begin{itemize}
+		\item Commutative laws
+		\vspace{2cm}
+		\item Associative laws
+		\vspace{2cm}
+		\item Distributive laws
+		\vspace{2cm}
+	\end{itemize}
+}
+\frame{
+	\frametitle{Distributive laws}
+	
+}
+\frame{
+	\frametitle{DeMorgan's laws}
+	
+}
+\frame{
+	\frametitle{DeMorgan's laws}
+	
+}
+
+%================================================================%
+\section{Probability}
+\stepcounter{subsection}
+\frame{
+	\frametitle{How do we define probability?}
+	\pause
+	Example: Roll a die 4 times, what is the probability that you get different numbers?
+	\vspace{4cm}
+}
+
+\frame{
+	\frametitle{Why is the example too simple?}
+}
+
+\frame{
+	\frametitle{Probability space}
+	A probability space is a triple $(S, \mathcal{F}, P)$ (FYI, in many other books, notation $S$ is replaced by $\Omega$)
+	\vspace{4.5cm}
+}
+
+
+\frame{
+	\frametitle{Probability axioms}
+	
+}
+
+\frame{
+	\frametitle{Example}
+	\begin{itemize}
+		\item Let $S = \{1, 2, ... \}$
+		\item For any $E \subset S$, 
+		\[
+			P(E) = \sum_{i \in E} \frac{1}{2^i}
+		\]
+		\item Is it a probability space?
+	\end{itemize}
+	\vspace{3cm}
+}
+
+\frame{
+	\frametitle{Propositions}
+}
+\frame{
+	\frametitle{Propositions}
+}
+\frame{
+	\frametitle{Propositions}
+}
+
+
+\frame{
+	\frametitle{Example}
+	Pick an integer in $[1,1000]$ at random. Compute the probability that it is divisible neither by 12 nor by 15.
+	\vspace{5cm}
+}
+\frame{
+	\frametitle{Example}
+	Sit 3 men and 4 women at random in a row. What is the probability that either all the men or all the women end up sitting together?
+	\vspace{5cm}
+}
+
+\frame{
+	\frametitle{Example}
+	A group of 3 Democrats, 4 Republicans, and 5 Independents is seated at random around a table. Compute the probability that at least one of the three groups ends up sitting together.
+	\vspace{5cm}
+}
+\frame{
+	\frametitle{Example}
+	A large company with n employees has a scheme according to which each employee buys a Christmas gift and the gifts are then distributed at random to the employees. What is the probability that someone gets his or her own gift?
+	\vspace{5cm}
+}
+\frame{
+	\frametitle{Example}
+	
+}
+%================================================================%
+\section{Series}
+\stepcounter{subsection}
+\frame{
+	\frametitle{Just a review}
+	A good time to recall some common mathematical series:
+	\begin{eqnarray}\ok
+		\exp(x)&=& \sum_{n = 0}^\infty \frac{x^n}{n!}
+	\\\ok
+		log(1 - x)&=& -\sum_{n = 1}^\infty \frac{x^n}{n}
+	\\\ok
+		log(1 + x) &=& \sum_{n = 1}^\infty (-1)^{n+1} \frac{x^n}{n}
+	\\\ok
+		\frac{1}{1 - x} &=& \sum_{n = 0}^\infty x^n
+	\end{eqnarray}
+}
+\frame{
+	\frametitle{Binomial series, or binomial theorem}
+	\[
+		(x + y)^n = \sum_{k = 0}^n {n \choose k} x^k y^{n - k}
+	\]
+	\vspace{5cm}
+
+
+}
+\frame{
+	\frametitle{Binomial series, or binomial theorem}
+
+
+}
+
+\frame{
+	\frametitle{Example}
+	How many subsets are there of a set consisting of $n$ elements?
+	\vspace{5cm}
+}
+
+
+\end{document}

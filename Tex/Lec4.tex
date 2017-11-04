@@ -1,0 +1,197 @@
+\documentclass[usenames,dvipsnames,12pt,compress, final, handout]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+\usepackage{alltt} 
+\let\Tiny=\tiny
+\usepackage{eqnarray,amsmath}
+% \usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+% \usepackage{bigstrut}
+\usepackage{graphicx}
+\usepackage[round]{natbib}
+\usepackage{bm}
+\usepackage{tikzsymbols}
+\setbeamersize{text margin left=15pt,text margin right=10pt}
+\usepackage{tikzsymbols}
+\usepackage{textcomp}
+\usepackage{parskip}
+\setbeamertemplate{navigation symbols}{}    
+\setbeamertemplate{footline}[frame number]{}
+\usepackage{soul}
+\usetheme{Singapore}
+\usecolortheme{lily}
+%Misc Commands
+\newcommand{\mbf}{\mathbf}
+\newcommand{\lexp}{$\overset{\mbox{\tiny 0}}{e}$}
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{5pt}}{\enditemize}
+
+
+\newcommand{\bx}{{\bm x}}
+\newcommand{\bX}{{\bm X}}
+\newcommand{\by}{{\bm y}}
+\newcommand{\bY}{{\bm Y}}
+\newcommand{\bW}{{\bm W}}
+\newcommand{\bG}{{\bm G}}
+\newcommand{\bR}{{\bm R}}
+\newcommand{\bZ}{{\bm Z}}
+\newcommand{\bV}{{\bm V}}
+\newcommand{\bL}{{\bm L}}
+\newcommand{\bz}{{\bm z}}
+\newcommand{\be}{{\bm e}}
+\newcommand{\bgamma}{{\bm \gamma}}
+\newcommand{\bbeta}{{\bm \beta}}
+\newcommand{\balpha}{{\bm \alpha}}
+\newcommand{\bSigma}{{\bm \Sigma}}
+\newcommand{\bmu}{{\bm \mu}}
+\newcommand{\btheta}{{\bm \theta}}
+\newcommand{\bepsilon}{{\bm \epsilon}}
+\newcommand{\bone}{{\bm 1}}
+\newcommand{\bzero}{{\bm 0}}
+\newcommand{\bC}{{\bm C}}
+\newcommand{\bI}{{\bm I}}
+\newcommand{\bA}{{\bm A}}
+\newcommand{\bB}{{\bm B}}
+\newcommand{\bQ}{{\bm Q}}
+\newcommand{\bS}{{\bm S}}
+\newcommand{\bD}{{\bm D}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\orange}{\textcolor{Orange}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand{\ok}{\nonumber}
+
+% Adjust vertical spacing in lists
+\makeatletter
+\def\@listi{\leftmargin\leftmargini
+            \topsep     8\p@ \@plus2\p@ \@minus2.5\p@
+            \parsep     0\p@
+            \itemsep  5\p@ \@plus2\p@ \@minus3\p@}
+\let\@listI\@listi
+\def\@listii{\leftmargin\leftmarginii
+              \topsep    6\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  3\p@ \@plus2\p@ \@minus3\p@}
+\def\@listiii{\leftmargin\leftmarginiii
+              \topsep    3\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@ \@plus\p@
+              \itemsep  2\p@ \@plus2\p@ \@minus3\p@}
+\makeatother
+% Dealing with fraile envrionment of beamer with codes
+\newenvironment{xframe}[2][]
+  {\begin{frame}[fragile,environment=xframe,#1]
+  \frametitle{#2}}
+  {\end{frame}}
+
+
+
+\title{Stat 394 Probability I}
+\subtitle{Lecture 4}
+
+\author[]{Richard Li}
+\date{\today}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+% \renewcommand{\itemize}[1][<+(1)->]{\olditemize[#1]}
+
+\maketitle
+
+%================================================================%
+\section{Independence}
+\stepcounter{subsection}
+\frame{
+  \frametitle{Definition}
+}
+\frame{
+  \frametitle{Example}
+  Roll a die twice, consider the event $E_1 = \{\mbox{sum of the two values is 6}\}$, and $E_2 = \{\mbox{first value is 4}\}$.
+  \vspace{6cm}
+}
+
+\frame{
+  \frametitle{Proposition}
+  If event $E$ and $F$ are independent, then $E$ and $F^c$ are also independent
+    \vspace{6cm}
+
+}
+
+\frame{
+  \frametitle{Example}
+  You roll a die, your friend tosses a coin. (1) If you roll 6, you win outright. (2) If you do not roll 6 and your friend tosses Heads, you lose outright. (3) If neither, the game is repeated until decided.
+  \vspace{5cm}
+}
+
+\frame{
+  \frametitle{Pepys-Newton Problem (1693)}
+  Which of the following is most likely?
+\begin{itemize}
+  \item 6 fair dice are tossed independently and at
+least one 6 appears.
+  \item 12 fair dice are tossed independently and
+at least two 6's appear.
+  \item 18 fair dice are tossed independently and
+at least three 6's appear.
+\end{itemize}
+\vspace{3cm}
+}
+
+\frame{
+  \frametitle{Multiple events}
+}
+
+\frame{
+  \frametitle{Mutual Independence}
+}
+\frame{
+  \frametitle{Proposition}
+  If E, F, and G are mutually independent, then E is also independent of $F \cup G$.
+  \vspace{6cm}
+}
+
+\frame{
+\frametitle{Example}
+
+}
+
+
+%================================================================%
+\section{Conditional probabilities}
+\stepcounter{subsection}
+\frame{
+  \frametitle{Proposition}
+  Once we start to think about conditional relationships involving more than two events, there is a helpful fact to know about: Conditional probabilities are probabilities. 
+  \vspace{6cm}
+}
+\frame{
+  \frametitle{Proposition}
+}
+\frame{
+  \frametitle{Monty Hall problem}
+}
+\frame{
+  \frametitle{Prosecutor's fallacy}
+}
+\frame{
+  \frametitle{Other common mistakes}
+}
+\frame{
+  \frametitle{More on conditional independence}
+}
+\frame{
+  \frametitle{Simpson's paradox}
+}
+\frame{
+  \frametitle{Simpson's paradox}
+}
+
+\end{document}
