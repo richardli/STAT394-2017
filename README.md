@@ -5,8 +5,10 @@ Class material for Probability I (imported from Canvas)
 ### Math/Stat 394
 #### Probability I, MWF 8:30 - 10:40 ARC 160
 #### Textbook: A First Course in Probability (9th Edition) by Sheldon Ross
-#### Syllabus:  
-#### Intro lecture: 
+
+[Syllabus](Syllabus394.pdf)
+
+[Intro lecture](Lec0.pdf) 
 
 This is the first quarter in a two (or possibly three) sequence in probability theory. This quarter we will cover probability axioms, combinatorics, conditional probability, statistical independence, discrete random variables, and some continuous random variables (depending on schedule). More specifically, we will cover chapters 1 – 4 and part of chapter 5 in the textbook although NOT necessarily in that order. 
 
